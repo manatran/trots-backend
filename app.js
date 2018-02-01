@@ -19,10 +19,6 @@ db.on('error', (err) => { console.log("Cannot connect to MongoDB", err) })
 
 
 
-
-
-app.set('public', path.join(__dirname, 'public'))
-
 app.get('/', (req, res) => {
     res.send('hello backend')
 })
