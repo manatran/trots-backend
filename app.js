@@ -3,21 +3,13 @@ const mongoose = require('mongoose')
 const path = require('path')
 const bodyParser = require('body-parser')
 
+//DB Config
+require('./config/db');
+
 const app = express()
 app.use(bodyParser.json())
 
 Student = require('./models/Student')
-
-//Connect to database
-mongoose.connect('mongodb://localhost/trots')
-let db = mongoose.connection
-
-//Notify connection to DB
-db.once('open', () => { console.log('Connected to MongoDB') })
-//Log errors To console
-db.on('error', (err) => { console.log("Cannot connect to MongoDB", err) })
-
-
 
 app.get('/', (req, res) => {
     res.send('hello backend')
