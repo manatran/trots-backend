@@ -1,11 +1,13 @@
 const mongoose = require('mongoose')
+const bcrypt = require('bcryptjs')
 
 //import related schemas
+/*
 let City = require('./models/City')
 let Specialization = require('./models/Specialization')
 let Tag = require('./models/Tag')
 let SocialMedia = require('./models/SocialMedia')
-
+*/
 //Student Schema
 let studentSchema = mongoose.Schema({
     name: {
@@ -30,7 +32,7 @@ let studentSchema = mongoose.Schema({
         type: String
     },
     hometown: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.ObjectId,
         ref: 'City'
     },
     personal_email: {
@@ -68,3 +70,46 @@ let studentSchema = mongoose.Schema({
 
 
 let Student = module.exports = mongoose.model('Student', studentSchema)
+
+//Get students
+module.exports.getStudents = function(callback, limit){
+    Student.find(callback).limit(limit)
+}
+
+//Get student by id
+module.exports.getStudentById = function(id, callback){
+    Student.findById(id, callback)
+}
+
+//Add Student
+module.exports.addStudent = function(student, callback){
+    Student.create(student, callback)
+}
+
+//Update Student
+module.exports.updateStudent = function(id, student, options, callback){
+    let query = {_id: id}
+    let update = {
+        name: student.name,
+        first_name: student.first_name,
+        username: student.username,
+        password: student.password,
+        student_number: student.student_number,
+        picture: student.picture,
+        hometown: student.hometown,
+        personal_email: student.personal_email,
+        bio: student.bio,
+        quote: student.quote,
+        prefferred_regions: student.prefferred_regions,
+        specialization: student.specialization,
+        tags: student.tags,
+        social_media: student.social_media
+    }
+    Student.findOneAndUpdate(query, update, options, callback)
+}
+
+//remove Student
+module.exports.removeStudent = function(id, callback){
+    let query = {_id: id}
+    Student.remove(query, callback)
+}

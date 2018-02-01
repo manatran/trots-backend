@@ -20,7 +20,7 @@ Navigate into the directory
 cd trots-backend
 ```
 
-Install the node modules
+Install the dependencies
 
 ```
 npm install
