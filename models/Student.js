@@ -2,12 +2,12 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 
 //import related schemas
-/*
-let City = require('./models/City')
-let Specialization = require('./models/Specialization')
-let Tag = require('./models/Tag')
-let SocialMedia = require('./models/SocialMedia')
-*/
+let City = require('./City')
+let Specialization = require('./Specialization')
+let Tag = require('./Tag')
+let SocialMedia = require('./SocialMedia')
+let Option = require('./Option')
+
 //Student Schema
 let studentSchema = mongoose.Schema({
     name: {
@@ -73,12 +73,24 @@ let Student = module.exports = mongoose.model('Student', studentSchema)
 
 //Get students
 module.exports.getStudents = function(callback, limit){
-    Student.find(callback).limit(limit)
+    Student.find(callback).limit(limit).populate(['hometown','prefferred_regions','specialization', 'tags','social_media']).populate({
+        path: 'specialization',
+        populate: {
+            path: 'option',
+            model: 'Option'
+        }
+    })
 }
 
 //Get student by id
 module.exports.getStudentById = function(id, callback){
-    Student.findById(id, callback)
+    Student.findById(id, callback).populate(['hometown','prefferred_regions','specialization','tags','social_media','option']).populate({
+        path: 'specialization',
+        populate: {
+            path: 'option',
+            model: 'Option'
+        }
+    })
 }
 
 //Add Student

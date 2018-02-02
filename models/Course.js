@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 //import related schemas
-let Lecturer = require('./models/Lecturer')
+let Lecturer = require('./Lecturer')
 
 //Course Schema
 let courseSchema = mongoose.Schema({

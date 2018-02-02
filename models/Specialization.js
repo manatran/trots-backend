@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 //import related schemas
-let Option = require('./models/Option')
+let Option = require('./Option')
 
 //Specialization Schema
 let specializationSchema = mongoose.Schema({

@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
 
 //import related schemas
-let Course = require('./models/Course')
-let Student = require('./models/Student')
-let Media = require('./models/Media')
-let Tag = require('./models/Tag')
-let Tool = require('./models/Tool')
+let Course = require('./Course')
+let Student = require('./Student')
+let Media = require('./Media')
+let Tag = require('./Tag')
+let Tool = require('./Tool')
 
 //Project Schema
 let projectSchema = mongoose.Schema({
