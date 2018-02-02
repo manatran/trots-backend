@@ -2,12 +2,15 @@ const express = require('express')
 const mongoose = require('mongoose')
 const path = require('path')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 //DB Config
 require('./config/db');
 
 const app = express()
 app.use(bodyParser.json())
+
+app.use(cors())
 
 Student = require('./models/Student')
 
