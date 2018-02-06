@@ -69,10 +69,10 @@ let Project = module.exports = mongoose.model('Project', projectSchema)
 
 //Get projects
 module.exports.getProjects = function(callback, limit){
-    Project.find(callback).limit(limit).populate(['courses', 'creators', 'media', 'tags', 'tools']).populate({
+    Project.find(callback).limit(limit).populate(['course', 'creators', 'media', 'tags', 'tools']).populate({
         path: 'course',
         populate: {
-            path: 'lecturer',
+            path: 'lecturers',
             model: 'Lecturer'
         }
     }).populate({
@@ -93,7 +93,7 @@ module.exports.getProjectById = function(id, callback){
     Project.findById(id, callback).populate(['courses', 'creators', 'media', 'tags', 'tools']).populate({
         path: 'course',
         populate: {
-            path: 'lecturer',
+            path: 'lecturers',
             model: 'Lecturer'
         }
     }).populate({
